@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Русская Рыбалка</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎣 Русская Рыбалка</h1>
+
+      <div class="ui-panel">
+        <div class="ui-item">Очки: <span id="score">0</span></div>
+        <div class="ui-item">Монеты: <span id="coins">0</span></div>
+      </div>
+
+      <div class="current-gear">
+        <p>Удочка: <strong id="rod-name">Бамбуковая</strong></p>
+        <p>Приманка: <strong id="bait-name">Червь</strong></p>
+      </div>
+
+      <div id="water">
+        <div id="hook"></div>
+        <div id="fish-container"></div>
+      </div>
+
+      <div id="status">Нажми «Заброс» 🎣</div>
+
+      <div class="buttons">
+        <button id="btn-throw">Заброс</button>
+        <button id="btn-pull" style="display:none">Тяни!</button>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="shop">Магазин</button>
+        <button class="tab-btn" data-tab="leaderboard">Рекорды</button>
+      </div>
+
+      <div id="tab-shop" class="tab-content active">
+        <h3>🪝 Удочки</h3>
+        <div id="shop-rods"></div>
+
+        <h3>🪱 Приманки</h3>
+        <div id="shop-baits"></div>
+      </div>
+
+      <div id="tab-leaderboard" class="tab-content">
+        <h3>🏆 Топ-3 игроков</h3>
+        <ul id="leaderboard-list"></ul>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
