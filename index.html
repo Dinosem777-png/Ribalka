@@ -1,54 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Русская Рыбалка</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Русская Рыбалка: Pro Edition</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>🎣 Русская Рыбалка</h1>
+    <div class="app-container">
+      <header class="header">
+        <div class="icon">🎣</div>
+        <h1>Русская Рыбалка</h1>
+      </header>
 
-      <div class="ui-panel">
-        <div class="ui-item">Очки: <span id="score">0</span></div>
-        <div class="ui-item">Монеты: <span id="coins">0</span></div>
+      <!-- Статистика -->
+      <div class="stats-panel">
+        <div class="stat-item">
+          <span class="label">Очки</span>
+          <span class="value" id="score">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="label">Монеты</span>
+          <span class="value coins" id="coins">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="label">Удочка</span>
+          <span class="value" id="rod-name">Бамбук</span>
+        </div>
+        <div class="stat-item">
+          <span class="label">Приманка</span>
+          <span class="value" id="bait-name">Червь</span>
+        </div>
       </div>
 
-      <div class="current-gear">
-        <p>Удочка: <strong id="rod-name">Бамбуковая</strong></p>
-        <p>Приманка: <strong id="bait-name">Червь</strong></p>
+      <!-- Зона рыбалки с физикой -->
+      <div class="fishing-zone">
+        <div class="water-container">
+          <div class="water-wave"></div>
+          <div class="water-wave slow"></div>
+        </div>
+        
+        <div class="rod-system">
+          <div class="rod-base"></div>
+          <div class="rod-arm"></div>
+          <div class="line-container">
+            <div class="line"></div>
+            <div id="hook" class="hook"></div>
+          </div>
+        </div>
+
+        <p id="status" class="status-text">Готов к рыбалке. Нажми «Заброс».</p>
+        
+        <div class="action-buttons">
+          <button id="btn-throw" class="btn-primary">🎣 Заброс</button>
+          <button id="btn-pull" class="btn-secondary" style="display: none;">💪 Тяни!</button>
+        </div>
       </div>
 
-      <div id="water">
-        <div id="hook"></div>
-        <div id="fish-container"></div>
-      </div>
+      <!-- Контейнер для частиц (искр) -->
+      <div id="particles" class="particles-container"></div>
 
-      <div id="status">Нажми «Заброс» 🎣</div>
+      <!-- Результат улова -->
+      <div id="fish-container" class="fish-result"></div>
 
-      <div class="buttons">
-        <button id="btn-throw">Заброс</button>
-        <button id="btn-pull" style="display:none">Тяни!</button>
-      </div>
-
+      <!-- Магазин и Табы -->
       <div class="tabs">
-        <button class="tab-btn active" data-tab="shop">Магазин</button>
-        <button class="tab-btn" data-tab="leaderboard">Рекорды</button>
+        <button class="tab-btn active" data-tab="shop">🛒 Магазин</button>
+        <button class="tab-btn" data-tab="leaderboard">🏆 Рекорды</button>
       </div>
 
-      <div id="tab-shop" class="tab-content active">
-        <h3>🪝 Удочки</h3>
-        <div id="shop-rods"></div>
+      <div id="shop-content" class="content-section active">
+        <h3>Выбор снаряжения</h3>
+        
+        <div class="section-title">🎣 Удочки</div>
+        <div id="shop-rods" class="grid-cards"></div>
 
-        <h3>🪱 Приманки</h3>
-        <div id="shop-baits"></div>
+        <div class="section-title">🪱 Приманки</div>
+        <div id="shop-baits" class="grid-cards"></div>
       </div>
 
-      <div id="tab-leaderboard" class="tab-content">
-        <h3>🏆 Топ-3 игроков</h3>
-        <ul id="leaderboard-list"></ul>
+      <div id="leaderboard-content" class="content-section" style="display: none;">
+        <h3>Топ-3 игроков</h3>
+        <ul id="leaderboard-list" class="leaderboard-list">
+          <li>Загрузка...</li>
+        </ul>
       </div>
     </div>
 
